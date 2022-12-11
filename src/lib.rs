@@ -5,10 +5,16 @@ use agent::Agent;
 use wasm_bindgen::prelude::*;
 use yew_agent::PublicWorker;
 
-#[wasm_bindgen]
-pub fn run() -> Result<(), JsValue> {
+#[wasm_bindgen(start)]
+pub fn start() -> Result<(), JsValue> {
+    use js_sys::{global, Reflect};
+
     wasm_logger::init(wasm_logger::Config::default());
-    Agent::register();
-    yew::Renderer::<app::App>::new().render();
+
+    if Reflect::has(&global(), &JsValue::from_str("window")).unwrap() {
+        yew::Renderer::<app::App>::new().render();
+    } else {
+        Agent::register();
+    }
     Ok(())
 }

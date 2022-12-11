@@ -20,7 +20,7 @@ impl yew_agent::Worker for Agent {
         self.link.respond(id, msg);
     }
 
-    // fn name_of_resource() -> &'static str {
-    //     "agent.js"
-    // }
+    fn name_of_resource() -> &'static str {
+        "pkg/yew_debug.js"
+    }
 }

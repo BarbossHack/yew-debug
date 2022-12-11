@@ -3,7 +3,7 @@
 Steps to reproduce
 
 ```bash
-wasm-pack build --target web -d static/pkg --dev
+wasm-pack build --target no-modules -d static/pkg --dev
 
 python server.py
 ```
